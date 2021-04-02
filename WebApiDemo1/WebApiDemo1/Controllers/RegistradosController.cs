@@ -11,6 +11,19 @@ using WebApiDemo1.Models;
 
 namespace WebApiDemo1.Controllers
 {
+
+    public enum ErrorCodeRegistrado
+    {
+        RegistroErrorConexionBase,
+        TodoItemNameAndNotesRequired,
+        TodoItemIDInUse,
+        RecordNotFound,
+        CouldNotCreateItem,
+        CouldNotUpdateItem,
+        CouldNotDeleteItem
+    }
+
+
     [Route("api/[controller]")]
     [ApiController]
     public class RegistradosController : ControllerBase
@@ -51,11 +64,51 @@ namespace WebApiDemo1.Controllers
             return Ok(_IRegistrados.DatosDeRegistrado(Identificacion));
         }
 
-        // POST api/<RegistradosController>
-        [HttpPost]
-        public void Post([FromBody] string value)
+        [HttpGet("{IdRegistrado}/{Identificacion}", Name = "GetRegistrado")]
+        public IActionResult GetInforegistrado(int IdRegistrado, string Identificacion)
         {
+            return Ok(_IRegistrados.DatosDeRegistrado2(IdRegistrado, Identificacion));
         }
+
+
+        [HttpGet("RegistradoDatos/{IdRegistrado}/{Identificacion}", Name = "GetRegistradoDatos")]
+        public IActionResult GetInforegistrado2(int IdRegistrado, string Identificacion)
+        {
+            return Ok(_IRegistrados.DatosDeRegistrado2(IdRegistrado, Identificacion));
+        }
+
+        // POST api/<RegistradosController>
+        //[HttpPost]
+        //public void Post([FromBody] string value)
+        //{
+        //}
+
+        [HttpPost]
+        public IActionResult Post([FromBody] Registrado NewItem)
+        {
+
+            try
+            {
+                if(NewItem == null || !ModelState.IsValid)
+                {
+
+                    return BadRequest(ErrorCodeRegistrado.RegistroErrorConexionBase.ToString());
+
+                }
+
+                _IRegistrados.InsertRegistrado(NewItem);
+
+            }
+            catch (Exception)
+            {
+
+                return BadRequest(ErrorCodeRegistrado.RegistroErrorConexionBase.ToString());
+            }
+
+            return Ok(NewItem);
+
+        }
+
 
         // PUT api/<RegistradosController>/5
         [HttpPut("{id}")]

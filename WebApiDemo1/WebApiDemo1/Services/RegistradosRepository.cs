@@ -23,6 +23,13 @@ namespace WebApiDemo1.Services
         }
 
 
+        public IEnumerable<Registrado> DatosDeRegistrado2(int IdRegistrado, string identificacion)
+        {
+
+            return CargaDatosByIdentificacionById(IdRegistrado, identificacion);
+
+        }
+
         ///Accedo al dbcontext - acceder a la capa de datos
 
         //Devuelve todos los registros
@@ -42,6 +49,24 @@ namespace WebApiDemo1.Services
                 return context.Registrados.Where(a=> a.Identificacion == identificacion).ToList();
             }
        }
+
+        public List<Registrado> CargaDatosByIdentificacionById(int IdRegistrado, string identificacion)
+        {
+            using (var context = new DBRegistradosContext())
+            {
+                return context.Registrados.Where(a => a.IdRegistrado == IdRegistrado 
+                && a.Identificacion == identificacion).ToList();
+            }
+        }
+
+        public void InsertRegistrado(Registrado NewItem)
+        {
+            using (var context = new DBRegistradosContext() )
+            {
+                context.Registrados.Add(NewItem);
+                context.SaveChanges();
+            }
+        }
 
     }
 }

@@ -12,5 +12,9 @@ namespace WebApiDemo1.Interfaces
         IEnumerable<Registrado> ListRegistrados { get;  }
 
         IEnumerable<Registrado> DatosDeRegistrado(string Identificacion);
+
+        IEnumerable<Registrado> DatosDeRegistrado2(int IdRegistrado, string identificacion);
+
+        void InsertRegistrado(Registrado NewItem);
     }
 }
