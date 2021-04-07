@@ -26,3 +26,20 @@ VALUES ('0924258130', 'Marla Elina', 'Arellano Jimenez', 'Marla Elina Arellano J
 */
 
 select * from DBRegistrados..Registrados
+
+
+Create table  Empresas
+(
+    IdEmpresa  int primary key identity(1,1),
+    NombrEmpresa varchar(20),
+    Estado varchar(25)
+)
+
+
+Create table  EmpresaRegistrados
+(
+    IdEmpresaRegistrado  int primary key identity(1,1),
+    IdEmpresa  int,
+    IdRegistrado int,
+    Estado varchar(25)
+)
