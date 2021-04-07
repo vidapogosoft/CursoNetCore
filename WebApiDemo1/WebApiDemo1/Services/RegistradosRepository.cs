@@ -12,7 +12,8 @@ namespace WebApiDemo1.Services
 {
     public class RegistradosRepository : IRegistrados
     {
-       
+        private List<Registrado> ListRegistrado;
+
         public IEnumerable<Registrado> ListRegistrados
         {
             get { return CargarRegistrados(); }
@@ -74,6 +75,50 @@ namespace WebApiDemo1.Services
                 context.SaveChanges();
             }
         }
+
+
+        public void DeleteRegistrado(int IdRegistrado)
+        {
+            using (var context = new DBRegistradosContext())
+            {
+                var Registro = context.Registrados.Where(a=> a.IdRegistrado == IdRegistrado).FirstOrDefault();
+
+                if (Registro != null)
+                {
+                    context.Registrados.Remove(Registro);
+                    context.SaveChanges();
+                }
+
+            }
+        }
+
+        public bool ItemExists(int IdRegistrado)
+        {
+            return ListRegistrado.Any(z=> z.IdRegistrado == IdRegistrado);
+        }
+
+        public void UpdateRegistrado(Registrado Item)
+        {
+            using (var context = new DBRegistradosContext())
+            {
+
+                var registro = context.Registrados.Where(a => a.IdRegistrado == Item.IdRegistrado).ToList();
+
+                if (registro.Count > 0)
+                {
+                    foreach(Registrado reg in registro)
+                    {
+                        reg.Apellidos = Item.Apellidos;
+                        reg.Nombres = Item.Nombres;
+                        reg.NombresCompletos = Item.NombresCompletos;
+                        reg.Identificacion = Item.Identificacion;
+
+                        context.SaveChanges();
+                    }
+                }
+            }
+         }
+
 
         public List<clsDatosRegistrados> CargaDatosRegistradosEmpresas()
         {

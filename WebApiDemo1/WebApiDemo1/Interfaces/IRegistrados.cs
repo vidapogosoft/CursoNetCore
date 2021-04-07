@@ -18,6 +18,11 @@ namespace WebApiDemo1.Interfaces
         IEnumerable<Registrado> DatosDeRegistrado2(int IdRegistrado, string identificacion);
 
         void InsertRegistrado(Registrado NewItem);
+        void UpdateRegistrado(Registrado Item);
+
+        void DeleteRegistrado(int IdRegistrado);
+
+        bool ItemExists(int IdRegistrado );
 
         IEnumerable<clsDatosRegistrados> ListDatosEmpresaRegistrados { get; }
     }

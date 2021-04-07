@@ -119,15 +119,77 @@ namespace WebApiDemo1.Controllers
 
 
         // PUT api/<RegistradosController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        //[HttpPut("{id}")]
+        //public void Put(int id, [FromBody] string value)
+        //{
+        //}
+
+        [HttpPut]
+        public IActionResult Put([FromBody] Registrado Item)
         {
+            try
+            {
+                bool existsitem;
+
+                if (Item == null || !ModelState.IsValid)
+                {
+                    return BadRequest(ErrorCodeRegistrado.CouldNotUpdateItem.ToString());
+                }
+
+                existsitem = _IRegistrados.ItemExists(Item.IdRegistrado);
+
+                if (!existsitem)
+                {
+
+                    return NotFound(ErrorCodeRegistrado.RecordNotFound.ToString());
+
+                }
+
+                _IRegistrados.UpdateRegistrado(Item);
+
+            }
+            catch (Exception)
+            {
+
+                return BadRequest(ErrorCodeRegistrado.RegistroErrorConexionBase.ToString());
+            }
+
+            return NoContent();
         }
 
         // DELETE api/<RegistradosController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        //[HttpDelete("{id}")]
+        //public void Delete(int id)
+        //{
+        //}
+
+        [HttpDelete("{IdRegistrado}")]
+        public IActionResult Delete(int IdRegistrado)
         {
+            try
+            {
+                bool existsitem;
+
+                existsitem = _IRegistrados.ItemExists(IdRegistrado);
+
+                if (!existsitem)
+                {
+
+                    return NotFound(ErrorCodeRegistrado.RecordNotFound.ToString());
+
+                }
+
+                _IRegistrados.DeleteRegistrado(IdRegistrado);
+
+            }
+            catch (Exception)
+            {
+
+                return BadRequest(ErrorCodeRegistrado.RegistroErrorConexionBase.ToString());
+            }
+
+            return NoContent();
         }
+
     }
 }
