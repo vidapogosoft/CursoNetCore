@@ -2,9 +2,9 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
-#nullable disable
-
 using Microsoft.Extensions.Configuration;
+
+#nullable disable
 
 namespace WebApiDemo1.Models
 {
@@ -19,6 +19,8 @@ namespace WebApiDemo1.Models
         {
         }
 
+        public virtual DbSet<Empresa> Empresas { get; set; }
+        public virtual DbSet<EmpresaRegistrado> EmpresaRegistrados { get; set; }
         public virtual DbSet<Registrado> Registrados { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -40,6 +42,30 @@ namespace WebApiDemo1.Models
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasAnnotation("Relational:Collation", "SQL_Latin1_General_CP1_CI_AI");
+
+            modelBuilder.Entity<Empresa>(entity =>
+            {
+                entity.HasKey(e => e.IdEmpresa)
+                    .HasName("PK__Empresas__5EF4033E81A37520");
+
+                entity.Property(e => e.Estado)
+                    .HasMaxLength(25)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.NombrEmpresa)
+                    .HasMaxLength(20)
+                    .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<EmpresaRegistrado>(entity =>
+            {
+                entity.HasKey(e => e.IdEmpresaRegistrado)
+                    .HasName("PK__EmpresaR__D9649CDADD26E743");
+
+                entity.Property(e => e.Estado)
+                    .HasMaxLength(25)
+                    .IsUnicode(false);
+            });
 
             modelBuilder.Entity<Registrado>(entity =>
             {

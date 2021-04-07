@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 
 using WebApiDemo1.Models;
 
+using WebApiDemo1.Entidades;
+
 namespace WebApiDemo1.Interfaces
 {
     public interface IRegistrados
@@ -16,5 +18,7 @@ namespace WebApiDemo1.Interfaces
         IEnumerable<Registrado> DatosDeRegistrado2(int IdRegistrado, string identificacion);
 
         void InsertRegistrado(Registrado NewItem);
+
+        IEnumerable<clsDatosRegistrados> ListDatosEmpresaRegistrados { get; }
     }
 }

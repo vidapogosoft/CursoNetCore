@@ -51,6 +51,14 @@ namespace WebApiDemo1.Controllers
             return Ok(_IRegistrados.ListRegistrados);
         }
 
+        [HttpGet]
+        [Route("RegistradosEmpresa")]
+        public IActionResult GetRegistradosEmpresa()
+        {
+            return Ok(_IRegistrados.ListDatosEmpresaRegistrados);
+        }
+
+
         // GET api/<RegistradosController>/5
         //[HttpGet("{id}")]
         //public string Get(int id)
