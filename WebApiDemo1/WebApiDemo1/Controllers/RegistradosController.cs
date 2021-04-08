@@ -29,7 +29,7 @@ namespace WebApiDemo1.Controllers
     public class RegistradosController : ControllerBase
     {
         private readonly IRegistrados _IRegistrados;
-
+        public List<Registrado> ListRegistrado;
 
         public RegistradosController(IRegistrados IRegistrados)
         {
@@ -129,16 +129,16 @@ namespace WebApiDemo1.Controllers
         {
             try
             {
-                bool existsitem;
+                ListRegistrado = new List<Registrado>();
 
                 if (Item == null || !ModelState.IsValid)
                 {
                     return BadRequest(ErrorCodeRegistrado.CouldNotUpdateItem.ToString());
                 }
 
-                existsitem = _IRegistrados.ItemExists(Item.IdRegistrado);
+                ListRegistrado = _IRegistrados.ItemExists(Item.IdRegistrado);
 
-                if (!existsitem)
+                if (ListRegistrado.Count == 0)
                 {
 
                     return NotFound(ErrorCodeRegistrado.RecordNotFound.ToString());
@@ -168,11 +168,11 @@ namespace WebApiDemo1.Controllers
         {
             try
             {
-                bool existsitem;
+                ListRegistrado = new List<Registrado>();
 
-                existsitem = _IRegistrados.ItemExists(IdRegistrado);
+                ListRegistrado = _IRegistrados.ItemExists(IdRegistrado);
 
-                if (!existsitem)
+                if (ListRegistrado.Count == 0)
                 {
 
                     return NotFound(ErrorCodeRegistrado.RecordNotFound.ToString());

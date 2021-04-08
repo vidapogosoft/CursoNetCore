@@ -12,7 +12,7 @@ namespace WebApiDemo1.Services
 {
     public class RegistradosRepository : IRegistrados
     {
-        private List<Registrado> ListRegistrado;
+        //private List<Registrado> ListRegistrado;
 
         public IEnumerable<Registrado> ListRegistrados
         {
@@ -92,9 +92,13 @@ namespace WebApiDemo1.Services
             }
         }
 
-        public bool ItemExists(int IdRegistrado)
+        public List<Registrado> ItemExists(int IdRegistrado)
         {
-            return ListRegistrado.Any(z=> z.IdRegistrado == IdRegistrado);
+            using (var context = new DBRegistradosContext())
+            {
+                return  context.Registrados.Where(z => z.IdRegistrado == IdRegistrado).ToList();
+            }
+
         }
 
         public void UpdateRegistrado(Registrado Item)

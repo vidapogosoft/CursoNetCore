@@ -22,7 +22,7 @@ namespace WebApiDemo1.Interfaces
 
         void DeleteRegistrado(int IdRegistrado);
 
-        bool ItemExists(int IdRegistrado );
+        List<Registrado> ItemExists(int IdRegistrado );
 
         IEnumerable<clsDatosRegistrados> ListDatosEmpresaRegistrados { get; }
     }
