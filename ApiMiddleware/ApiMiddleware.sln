@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31112.23
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiMiddleware", "ApiMiddleware\ApiMiddleware.csproj", "{2C5AC836-08E4-42F8-BF83-7DF75BB8307B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2C5AC836-08E4-42F8-BF83-7DF75BB8307B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C5AC836-08E4-42F8-BF83-7DF75BB8307B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C5AC836-08E4-42F8-BF83-7DF75BB8307B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C5AC836-08E4-42F8-BF83-7DF75BB8307B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {451D746C-FD30-4EA8-B9B3-30F4C0B74699}
+	EndGlobalSection
+EndGlobal
