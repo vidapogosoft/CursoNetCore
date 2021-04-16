@@ -23,7 +23,7 @@ namespace TokenApi.Repositories
             _mapper = mapper;
         }
 
-        public IProductsRepository Products
+        public IProductsRepository Productos
         {
 
             get
@@ -40,6 +40,7 @@ namespace TokenApi.Repositories
 
         }
 
+       
         public async Task SaveAsync()
         {
             await _repoContext.SaveChangesAsync();

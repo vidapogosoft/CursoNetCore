@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
+using Microsoft.EntityFrameworkCore;
 using TokenApi.Models;
 using TokenApi.DTos;
 using AutoMapper;
@@ -31,9 +32,12 @@ namespace TokenApi.Repositories
             throw new NotImplementedException();
         }
 
-        Task<IEnumerable<ProductsDto>> IProductsRepository.GetAllProductsAsync()
+        public async Task<IEnumerable<ProductsDto>> GetAllProductsAsync()
         {
-            throw new NotImplementedException();
+            var product = await FindAll().OrderBy(x => x.Nombre).ToListAsync();
+            var productResult = _mapper.Map<IEnumerable<ProductsDto>>(product);
+
+            return productResult;
         }
 
         Task<ProductsDto> IProductsRepository.GetProductByIdAsync(Guid ProdcuctId)

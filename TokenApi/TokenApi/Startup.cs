@@ -35,7 +35,7 @@ namespace TokenApi
         public void ConfigureServices(IServiceCollection services)
         {
 
-            var key = "DemoTokenApiKey";
+            var key = "Demo Token ApiKey Exmaple";
 
             services.AddRouting(options => options.LowercaseUrls = true);
 
