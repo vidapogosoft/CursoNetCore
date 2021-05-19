@@ -1,0 +1,68 @@
+﻿
+@model MVCWebApp2.Models.Student
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+
+<h1>Datos del alumno</h1>
+
+<h2>Datos de alumno registrados</h2>
+
+<div class="row">
+
+    <div class="col-md-12">
+
+        <div class="row">
+
+            <div class="col-md-6">
+                @Html.DisplayNameFor(model => model.ID)
+            </div>
+
+            <div class="col-md-6">
+                @Html.DisplayFor(model => model.ID)
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-md-6">
+               <label>Apellidos</label>
+            </div>
+
+            <div class="col-md-6">
+                @Html.DisplayFor(model => model.LastName)
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-md-6">
+                <label>Nombres</label>
+            </div>
+
+            <div class="col-md-6">
+                @Html.DisplayFor(model => model.FirstMidName)
+            </div>
+
+        </div>
+
+
+
+    </div>
+
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <a asp-action="Edit" asp-route-id="@Model.ID" class="btn btn-lg btn-danger">Editar Datos</a>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <a asp-action="Index" class="btn btn-lg btn-warning">Regresar a consulta</a>
+    </div>
+</div>

@@ -1,0 +1,50 @@
+﻿
+@model MVCWebApp2.Models.Student
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Datos del alumno</h1>
+
+<h2>Datos de alumno registrado</h2>
+
+<hr />
+
+<div class="row">
+
+    <div class="col-md-4">
+
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="ID" />
+
+                <div class="form-group">
+                    <label class="col-form-label">Nombres:</label>
+                    <input class="form-control" asp-for="FirstMidName" />
+                   
+                    <span asp-validation-for="FirstMidName" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-form-label">Apellidos:</label>
+                    <input class="form-control" asp-for="LastName" />
+                    <span asp-validation-for="LastName" class="text-danger"></span>
+                </div>
+
+             
+                <div class="form-group">
+
+                    <input type="submit" value="Editar" class="btn btn-lg btn-danger" />
+
+                </div>
+
+        </form>
+
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <a asp-action="Index" class="btn btn-lg btn-warning">Regresar a consulta</a>
+    </div>
+</div>
