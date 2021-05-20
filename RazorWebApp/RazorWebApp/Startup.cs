@@ -9,6 +9,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
+using RazorWebApp.Data;
+using RazorWebApp.Interfaces;
+using RazorWebApp.Repositories;
+using RazorWebApp.Services;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
+
 namespace RazorWebApp
 {
     public class Startup
@@ -23,6 +30,34 @@ namespace RazorWebApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            services.AddDbContext<ApplicationDbContext>(
+
+                options => options.UseSqlServer(
+                    
+                    Configuration.GetConnectionString("database"),
+                    b => b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)
+
+                    )
+
+                );
+
+            #region repositorios
+
+            services.AddTransient(typeof(IGenericRepositoryAsync<>), typeof(GenericRepositoryAsync<>));
+            services.AddTransient<IRegistradosRepositoryAsync, RegistradosRepositoryAsync>();
+            services.AddTransient<IUnitOfWork, UnitOfWork>();
+
+
+
+            #endregion
+
+            services.AddHttpContextAccessor();
+
+            services.AddTransient<IActionContextAccessor, ActionContextAccessor>();
+
+            services.AddScoped<IRazorRenderService, RazorRenderService>();
+
             services.AddRazorPages();
         }
 
