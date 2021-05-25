@@ -4,20 +4,22 @@ using System.Linq;
 using System.Threading.Tasks;
 
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace RazorWebApp.Entities
 {
     public class Registrados
     {
-
-        public string idRegistrado { get; set; }
-        [Required]
-        public string identificacion { get; set; }
-        [Required]
-        public string nombres { get; set; }
-        [Required]
-        public string apellidos { get; set; }
-        public string nombresCompletos { get; set; }
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int IdRegistrado { get; set; }
+      
+        public string Identificacion { get; set; }
+       
+        public string Nombres { get; set; }
+       
+        public string Apellidos { get; set; }
+        public string NombresCompletos { get; set; }
 
     }
 }

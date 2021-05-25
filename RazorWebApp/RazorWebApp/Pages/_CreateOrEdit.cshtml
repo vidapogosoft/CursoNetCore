@@ -1,0 +1,50 @@
+﻿@using RazorWebApp.Entities
+@model Registrados
+
+
+<form id="create-form" method="post" asp-page="Index" asp-route-id="@Model.IdRegistrado"
+      asp-page-handler="CreateOrEdit"
+      onsubmit="return jQueryModalPost(this);">
+
+    <div class="form-group row">
+        <input type="hidden" asp-for="IdRegistrado" />
+        <label class="col-md-3 col-form-label">Identificacion</label>
+        <div class="col-md-9">
+            <input type="text" autocomplete="off" asp-for="Identificacion" name="Identificacion" class="form-control">
+            <span asp-validation-for="Identificacion" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-md-3 col-form-label">Nombres</label>
+        <div class="col-md-9">
+            <input type="text" autocomplete="off" asp-for="Nombres" name="Nombres" class="form-control">
+            <span asp-validation-for="Nombres" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-md-3 col-form-label">Apellidos</label>
+        <div class="col-md-9">
+            <input type="text" autocomplete="off" asp-for="Apellidos" name="Apellidos" class="form-control">
+            <span asp-validation-for="Apellidos" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-md-3 col-form-label">Nombres Completos</label>
+        <div class="col-md-9">
+            <input type="text" autocomplete="off" asp-for="NombresCompletos" name="NombresCompletos" class="form-control">
+            <span asp-validation-for="NombresCompletos" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group justify-content-between">
+        <button type="button" class="btn btn-secondary close-button" data-dismiss="modal">Cancel</button>
+        <button type="submit" class="btn btn-primary save-button">Save</button>
+    </div>
+
+</form>
+<script type="text/javascript" language=javascript>
+    $.validator.unobtrusive.parse(document);
+</script>

@@ -10,7 +10,7 @@
 </div>
 <div class="card">
     <div class="col-sm-12" style="padding:20px">
-        <a onclick="jQueryModalGet('?handler=CreateOrEdit','Create Registrado')"  class="btn bg-success">Nuevo Registro</a>
+        <a onclick="jQueryModalGet('?handler=CreateOrEdit','Create Registrado')" class="btn bg-success">Nuevo Registro</a>
         <a id="reload" class="btn bg-warning">Reload</a>
 
     </div>
@@ -19,22 +19,15 @@
 
 @section Scripts
 {
-    
-<script>
-    $(document).ready(function ()
-    {
-        $('#viewAll').load('?handler = ViewAllPartial');
-    });
-    $(function ()
-    {
-
-        $('#reload').on('click', function ()
-        {
+    <script>
+        $(document).ready(function () {
             $('#viewAll').load('?handler=ViewAllPartial');
+
         });
-
-    });
-
-</script>
-
+        $(function () {
+            $('#reload').on('click', function () {
+                $('#viewAll').load('?handler=ViewAllPartial');
+            });
+        });
+    </script>
 }

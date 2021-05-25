@@ -35,10 +35,7 @@ namespace RazorWebApp
 
                 options => options.UseSqlServer(
                     
-                    Configuration.GetConnectionString("database"),
-                    b => b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)
-
-                    )
+                    Configuration.GetConnectionString("database"))
 
                 );
 
@@ -47,8 +44,6 @@ namespace RazorWebApp
             services.AddTransient(typeof(IGenericRepositoryAsync<>), typeof(GenericRepositoryAsync<>));
             services.AddTransient<IRegistradosRepositoryAsync, RegistradosRepositoryAsync>();
             services.AddTransient<IUnitOfWork, UnitOfWork>();
-
-
 
             #endregion
 
