@@ -1,0 +1,82 @@
+﻿@using BlazorWA1.Shared.Models;
+
+@page "/fetchregistrados"
+
+@inject HttpClient Http
+
+<h1>Fetch Registrados en base de datos</h1>
+
+<p>Este componente demuestra la consulat de registrados en base de datos</p>
+
+
+@if (RegList == null)
+{
+
+    <p>Cargando datos::</p>
+
+}
+else
+{
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Identificacion
+                </th>
+                <th>
+                    Nombres
+                </th>
+                <th>
+                    Apellidos
+                </th>
+                <th>
+                    NombresCompletos
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in RegList)
+            {
+                <tr>
+                    <td>
+                        @item.Identificacion
+                    </td>
+                    <td>
+                        @item.Nombres
+                    </td>
+                    <td>
+                        @item.Apellidos
+                    </td>
+                    <td>
+                        @item.NombresCompletos
+                    </td>
+                    <td>
+                        <a>Edit</a> |
+                        <a>Details</a> |
+                        <a>Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+
+}
+
+
+@code {
+
+    private Registrados[] RegList;
+
+    protected override async Task OnInitializedAsync()
+    {
+
+        RegList = await Http.GetFromJsonAsync<Registrados[]>("api/Registrados");
+
+    }
+
+
+}
+
