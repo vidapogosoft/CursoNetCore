@@ -20,6 +20,34 @@ namespace BlazorWA1.Server.DataAccess
 
         }
 
+        public void AddRegister(Registrados NewItem)
+        {
+            db.Registrados.Add(NewItem);
+            db.SaveChanges();
+        }
+
+        public void EditRegister(Registrados Item)
+        {
+            db.Entry(Item).State = EntityState.Modified;
+            db.SaveChanges();
+        }
+
+        public Registrados GetRegData(int id)
+        {
+           
+                Registrados reg = db.Registrados.Find(id);
+                return reg;
+            
+        }
+
+        public void DeleteRegister(int id)
+        {
+           
+                Registrados reg = db.Registrados.Find(id);
+                db.Registrados.Remove(reg);
+                db.SaveChanges();
+           
+        }
 
     }
 }

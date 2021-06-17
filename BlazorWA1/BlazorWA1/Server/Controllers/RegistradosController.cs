@@ -29,27 +29,33 @@ namespace BlazorWA1.Server.Controllers
 
         // GET api/<RegistradosController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public Registrados Details(int id)
         {
-            return "value";
+
+            return ObjReg.GetRegData(id);
         }
 
         // POST api/<RegistradosController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Create([FromBody] Registrados newitem)
         {
+            if (ModelState.IsValid)
+                ObjReg.AddRegister(newitem);
         }
 
         // PUT api/<RegistradosController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPut]
+        public void Edit([FromBody] Registrados item)
         {
+            if (ModelState.IsValid)
+                ObjReg.EditRegister(item);
         }
 
         // DELETE api/<RegistradosController>/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            ObjReg.DeleteRegister(id);
         }
     }
 }

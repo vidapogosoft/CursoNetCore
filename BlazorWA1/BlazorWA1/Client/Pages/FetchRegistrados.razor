@@ -4,10 +4,14 @@
 
 @inject HttpClient Http
 
+
 <h1>Fetch Registrados en base de datos</h1>
 
 <p>Este componente demuestra la consulat de registrados en base de datos</p>
 
+<p class="btn btn-block btn-danger">
+    <a href="/addregister">Create New</a>
+</p>
 
 @if (RegList == null)
 {
@@ -21,6 +25,9 @@ else
     <table class="table">
         <thead>
             <tr>
+                <th>
+                    Codigo Sistema
+                </th>
                 <th>
                     Identificacion
                 </th>
@@ -39,25 +46,28 @@ else
         <tbody>
             @foreach (var item in RegList)
             {
-                <tr>
-                    <td>
-                        @item.Identificacion
-                    </td>
-                    <td>
-                        @item.Nombres
-                    </td>
-                    <td>
-                        @item.Apellidos
-                    </td>
-                    <td>
-                        @item.NombresCompletos
-                    </td>
-                    <td>
-                        <a>Edit</a> |
-                        <a>Details</a> |
-                        <a>Delete</a>
-                    </td>
-                </tr>
+            <tr>
+                <td>
+                    @item.IdRegistrado
+                </td>
+                <td>
+                    @item.Identificacion
+                </td>
+                <td>
+                    @item.Nombres
+                </td>
+                <td>
+                    @item.Apellidos
+                </td>
+                <td>
+                    @item.NombresCompletos
+                </td>
+                <td>
+                    <a href='/editregister/@item.IdRegistrado'>Edit</a> |
+                    <a>Details</a> |
+                    <a href='/editregister/@item.IdRegistrado'>Delete</a>
+                </td>
+            </tr>
             }
         </tbody>
     </table>
