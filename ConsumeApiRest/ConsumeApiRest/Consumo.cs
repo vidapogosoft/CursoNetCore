@@ -44,6 +44,10 @@ namespace ConsumeApiRest
         public string RutaUrlgetAuth = "http://localhost:37803/api/Productos";
 
 
+        public string RutaUrlPostToken2 = "http://ec2-18-224-23-166.us-east-2.compute.amazonaws.com/tuti-handheld/api/v1/admin/login/";
+        public string RutaUrlgetAuth2 = "http://ec2-18-224-23-166.us-east-2.compute.amazonaws.com/tuti-handheld/api/v1/dispo/all/";
+
+
         public List<DTO.dtoRegistrados> InsRegistro { get; set; }
 
         HttpClient _client;
@@ -65,7 +69,7 @@ namespace ConsumeApiRest
                     Console.WriteLine("**************************************" + DateTime.Now.ToLongTimeString());
                     Console.WriteLine("INICIO PROCESO GET.....");
 
-                    ApiSaB1();
+                    //ApiSaB1();
 
                     //Console.WriteLine("INICIO get Api Auth.....");
                     //GetApiSB1();
@@ -85,6 +89,12 @@ namespace ConsumeApiRest
                     // Console.WriteLine("INICIO get Api Auth.....");
 
                     //GetApiAuth();
+
+                    /************************************/
+
+                    //GetApiAuth2();
+
+                    PostTokenApi2();
 
                     System.Threading.Thread.Sleep(360000);
 
@@ -339,6 +349,57 @@ namespace ConsumeApiRest
             }
 
         }
+
+
+        public async void PostTokenApi2()
+        {
+
+            var uri = new Uri(RutaUrlPostToken2);
+
+            var formContent = new FormUrlEncodedContent(new[]
+            {
+                new KeyValuePair<string, string>("usuario", "admin"),
+                new KeyValuePair<string, string>("clave", "bonsai")
+            });
+
+
+            HttpResponseMessage responseTokenAuth = null;
+
+            responseTokenAuth = await _client.PostAsync(uri, formContent);
+
+            if (responseTokenAuth.IsSuccessStatusCode)
+            {
+                TokenAuth = responseTokenAuth.Content.ReadAsStringAsync().ConfigureAwait(false).GetAwaiter().GetResult();
+
+                Console.WriteLine(TokenAuth);
+
+            }
+
+        }
+
+        public async void GetApiAuth2()
+        {
+
+         
+            var uri = new Uri(RutaUrlgetAuth2);
+
+            _client.DefaultRequestHeaders.Add("Authorization", "1d8515315664de983adac5b5b3c19dc98a39fbaafd31a09ebdeb26201682e002948525367446b6240fb50e8f2d2497edb190d9a31f824ea10f710a15ea2fd81d");
+
+
+            var responsegetAuth = await _client.GetAsync(uri);
+
+                if (responsegetAuth.IsSuccessStatusCode)
+                {
+                    var content = await responsegetAuth.Content.ReadAsStringAsync();
+
+                        Console.WriteLine("Authorizado");
+                 }
+                else
+                {
+                    Console.WriteLine("No Authorizado");
+                }
+
+            }
 
     }
 }
