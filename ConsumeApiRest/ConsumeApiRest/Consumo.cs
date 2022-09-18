@@ -74,11 +74,11 @@ namespace ConsumeApiRest
                     //Console.WriteLine("INICIO get Api Auth.....");
                     //GetApiSB1();
 
-                    //GetApi();
+                    GetApi();
 
                     //Console.WriteLine("INICIO PROCESO POST.....");
 
-                    //PostApi();
+                    PostApi();
 
                     //Console.WriteLine("INICIO Post Token Login.....");
 
